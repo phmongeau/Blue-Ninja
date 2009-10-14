@@ -28,6 +28,8 @@ package com.Tutorial
 		public var _maps:FlxArray;
 		public var _level:uint = 0;
 		public var _old_level:uint = 0;
+		private var _k:uint = 0;
+
 		
 		public static var lyrStage:FlxLayer;
 		public static var lyrSprites:FlxLayer;
@@ -133,6 +135,27 @@ package com.Tutorial
 			
 			FlxG.collideArray2(_map, _eStars);
 			FlxG.overlapArray(_eStars, _p, StarHitPlayer)
+			
+			//Konami Code :D
+			if (FlxG.kUp)
+				if (_k <= 0 || _k == 2) _k++;
+			if (FlxG.kDown)
+				if (_k == 1 || _k == 3) _k++;
+			if (FlxG.kLeft)
+				if (_k == 4 || _k == 6) _k++;
+			if (FlxG.kRight)
+				if (_k == 5 || _k == 7) _k++;
+			if (FlxG.kB)
+				if (_k == 8) _k++;
+			if (FlxG.kA)
+				if(_k == 9) _k++;
+			if (_k == 10)
+			{
+				_p.health = 10;
+				_k = 0;
+				trace('life = ' + _p.health); 
+				trace('yay!');
+			}		
 			
 			if (_p.health != _old_health)
 			{
