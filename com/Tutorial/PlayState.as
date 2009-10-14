@@ -138,9 +138,9 @@ package com.Tutorial
 			
 			//Konami Code :D
 			if (FlxG.kUp)
-				if (_k <= 0 || _k == 2) _k++;
+				if (_k <= 0 || _k == 1) _k++;
 			if (FlxG.kDown)
-				if (_k == 1 || _k == 3) _k++;
+				if (_k == 2 || _k == 3) _k++;
 			if (FlxG.kLeft)
 				if (_k == 4 || _k == 6) _k++;
 			if (FlxG.kRight)
@@ -189,6 +189,7 @@ package com.Tutorial
 			}
 			if (_old_level != _level)
 			{
+				FlxG.flash(0xFFFFFFFF, 0.75);
 				lyrStage.destroy();
 				_map = _maps[_level];
 				_p.x = 48;
