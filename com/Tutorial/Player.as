@@ -75,16 +75,14 @@ package com.Tutorial
 			}
 			if(_wallHang)
 			{
-				trace('hang Update');
 				velocity.y = 0;
-				trace('y = ' + velocity.y);
 				if(FlxG.justPressed(FlxG.A))
 				{
 					velocity.y = -_jump_power;
 					if (facing)
-						velocity.x -= _jump_power;
+						velocity.x -= _move_speed;
 					else
-						velocity.x += _jump_power; 
+						velocity.x += _move_speed; 
 				}
 			}
 			else if(FlxG.justPressed(FlxG.A) && velocity.y == 0)
@@ -144,6 +142,12 @@ package com.Tutorial
 				trace('hung')
 			}
 			return super.hitWall();
+		}
+		
+		override public function hitFloor():Boolean
+		{
+			_wallHang = false;
+			return super.hitFloor();
 		}
 
 		

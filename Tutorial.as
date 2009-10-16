@@ -4,7 +4,7 @@ package
 	import com.Tutorial.MenuState;
 	[SWF(width="640", height="480", backgroundColor="#000000")]
 	[Frame(factoryClass = "Preloader")]
-	
+		
 	public class Tutorial extends FlxGame
 	{
 		public function Tutorial():void

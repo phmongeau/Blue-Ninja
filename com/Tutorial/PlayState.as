@@ -7,8 +7,9 @@ package com.Tutorial
 		[Embed(source = '../../data/Tiles.png')] private var ImgTiles:Class;
 		[Embed(source = '../../data/map.txt', mimeType = "application/octet-stream")] private var DataMap:Class;
 		[Embed(source = '../../data/map2.txt', mimeType = "application/octet-stream")] private var DataMap2:Class;
+		[Embed(source = '../../data/map3.txt', mimeType = "application/octet-stream")] private var DataMap3:Class;
+		[Embed(source = '../../data/map4.txt', mimeType = "application/octet-stream")] private var DataMap4:Class;
 		[Embed(source = '../../data/backgroundTiles.png')] private var ImgBackground:Class;
-		[Embed(source = '../../data/background.txt', mimeType = "application/octet-stream")] private var DataMapBackground:Class;
 		[Embed(source = '../../data/health.png')] private var ImgHearts:Class;
 		[Embed(source = '../../data/cursor.png')] private var ImgCursor:Class;	
 	    
@@ -66,6 +67,9 @@ package com.Tutorial
 			_goals = new FlxArray;
 			_goals.add(new Goal(560, 64))
 			_goals.add(new Goal(624, 400));
+			_goals.add(new Goal(463, 304));
+			_goals.add(new Goal(48, 80));
+			_goals.add(new Goal(520, 112));
 			lyrStage.add(_goals[_level]);
 
 			_hearts = new FlxArray();
@@ -86,6 +90,9 @@ package com.Tutorial
 			_spawners = new FlxArray;
 			_spawners.add(new Spawner(432, 304, _e, _p, _eStars));
 			_spawners.add(new Spawner(432, 320, _e, _p, _eStars));
+			_spawners.add(new Spawner(656, 496, _e, _p, _eStars));
+			_spawners.add(new Spawner(208, 224, _e, _p, _eStars));			
+			_spawners.add(new Spawner(432, 320, _e, _p, _eStars));
 			lyrStage.add(_spawners[_level])
 
 			
@@ -93,11 +100,13 @@ package com.Tutorial
 			FlxG.followAdjust(0.5, 0.5);
 			FlxG.followBounds(1,1,640-1,480-1);
 			
-//			_back = new FlxTilemap(new DataMapBackground, ImgBackground, 1);
-//			lyrStage.add(_back);
 			_maps = new FlxArray;
 			_maps.add(new FlxTilemap(new DataMap, ImgTiles, 1));
 			_maps.add(new FlxTilemap(new DataMap2, ImgTiles, 1));
+			_maps.add(new FlxTilemap(new DataMap3, ImgBackground, 1));
+			_maps.add(new FlxTilemap(new DataMap4, ImgBackground, 1));
+			_maps.add(new FlxTilemap(new DataMap2, ImgTiles, 1));			
+
 			_map = _maps[_level];
 			lyrStage.add(_maps[_level]);
 			
@@ -119,6 +128,7 @@ package com.Tutorial
 				if (_level < _maps.length - 1)
 				{ 
 					_level += 1;
+					FlxG.score += 10;
 				}
 				else
 				{
@@ -243,6 +253,7 @@ package com.Tutorial
 		}
 		private function win():void
 		{
+			FlxG.score = 0;
 			FlxG.switchState(MenuState);
 		}
 		
